@@ -4,8 +4,6 @@ import matplotlib.pyplot as plt
 import statistics
 import sys
 
-
-# [ time, low, high, open, close, volume ],
 class Data_Set_Proc:
 
 	def __init__(self):
@@ -33,6 +31,13 @@ class Data_Set_Proc:
 				close_p[z] = data[z][0][4]
 				volume[z] = data[z][0][5]
 
+			combined_tuple = (time, low, high, open_p, close_p,volume)
+
+			combined_data_set =  np.hstack(combined_tuple)
+			#print("COMBINE DATA SET  :", combined_data_set)
+
+			return combined_data_set
+
 """
 				time = (time - statistics.mean(time))/statistics.stdev(time)
 				low = (low - statistics.mean(low))/statistics.stdev(low)
@@ -48,9 +53,4 @@ class Data_Set_Proc:
 			#close_p = np.append(close_p, ["close_p"], axis = 0)
 			#open_p = np.append(open_p, ["open_p"], axis = 0)
 
-			combined_tuple = (time, low, high, open_p, close_p,volume)
-
-			combined_data_set =  np.hstack(combined_tuple)
-			#print("COMBINE DATA SET  :", combined_data_set)
-
-			return combined_data_set
+# [ time, low, high, open, close, volume ],
