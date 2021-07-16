@@ -4,6 +4,14 @@ import matplotlib.pyplot as plt
 import statistics
 import sys
 
+				
+				
+
+			#time = np.append(time,["time"], axis = 0)
+			#close_p = np.append(close_p, ["close_p"], axis = 0)
+			#open_p = np.append(open_p, ["open_p"], axis = 0)
+
+# [ time, low, high, open, close, volume ],
 class Data_Set_Proc:
 
 	def __init__(self):
@@ -31,26 +39,16 @@ class Data_Set_Proc:
 				close_p[z] = data[z][0][4]
 				volume[z] = data[z][0][5]
 
-			combined_tuple = (time, low, high, open_p, close_p,volume)
+			#time = (time - statistics.mean(time))/statistics.stdev(time)
+			low = (low - statistics.mean(low))/statistics.stdev(low)
+			high = (high - statistics.mean(high))/statistics.stdev(high)
+			open_p = (open_p - statistics.mean(open_p))/statistics.stdev(open_p)
+			close_p = (close_p - statistics.mean(close_p))/statistics.stdev(close_p)
+			volume = (volume - statistics.mean(volume))/statistics.stdev(volume)
 
-			combined_data_set =  np.hstack(combined_tuple)
-			#print("COMBINE DATA SET  :", combined_data_set)
+			combined_data_set = (time, low, high, open_p, close_p,volume)
+
+			combined_data_set =  np.hstack(combined_data_set)
+			print("COMBINE DATA SET  :", combined_data_set)
 
 			return combined_data_set
-
-"""
-				time = (time - statistics.mean(time))/statistics.stdev(time)
-				low = (low - statistics.mean(low))/statistics.stdev(low)
-				high = (high - statistics.mean(high))/statistics.stdev(high)
-				open_p = (open_p - statistics.mean(open_p))/statistics.stdev(open_p)
-				close_p = (close_p - statistics.mean(close_p))/statistics.stdev(close_p)
-				volume = (volume - statistics.mean(volume))/statistics.stdev(volume)
-"""
-				
-				
-
-			#time = np.append(time,["time"], axis = 0)
-			#close_p = np.append(close_p, ["close_p"], axis = 0)
-			#open_p = np.append(open_p, ["open_p"], axis = 0)
-
-# [ time, low, high, open, close, volume ],
