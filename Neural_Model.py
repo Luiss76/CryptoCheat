@@ -15,6 +15,7 @@ class Neural_Model:
 		n_neuron = [n_input_neuron, n_hidd_neuron, ..., n_output_neuron]
 
 		'''
+		self.N_Neuron = n_neuron
 		self.beta = beta
 		self.n_layer = len(n_neuron) - 1
 		self.network_topology = np.empty(self.n_layer, dtype= object)
@@ -27,8 +28,11 @@ class Neural_Model:
 		for i in range(np.size(self.network_topology)):
 			self.network_topology[i] = 0.1 * np.random.randn(n_neuron[i]+1,n_neuron[i+1])
 
+		#return self.network_topology
+
 	'''
 	feed forward inputs to the network to get output
+
 	'''
 	def forward(self, inputs):
 		max_range = np.size(self.network_topology)
