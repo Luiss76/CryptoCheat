@@ -16,9 +16,11 @@ class Neural_Model:
 
 		'''
 		self.N_Neuron = n_neuron
+		#print("N_Neuron :", self.N_Neuron)
 		self.beta = beta
 		self.n_layer = len(n_neuron) - 1
 		self.network_topology = np.empty(self.n_layer, dtype= object)
+		self.score = 0
 
 		'''
 		Iterate through the neural topology and generate random neuron weight 
@@ -27,7 +29,6 @@ class Neural_Model:
 
 		for i in range(np.size(self.network_topology)):
 			self.network_topology[i] = 0.1 * np.random.randn(n_neuron[i]+1,n_neuron[i+1])
-
 		#return self.network_topology
 
 	'''
@@ -61,6 +62,7 @@ class Neural_Model:
 	sigmoid activation function
 	'''
 	def sigmoid_funct(self,inputs):
+
 		return 1.0/(1.0+np.exp(self.beta*inputs))
 
 
