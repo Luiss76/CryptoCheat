@@ -101,14 +101,16 @@ class Differential_Model:
 		'''
 		crossover function combining the parent and mutated vectors to produce offsprings
 		'''
+
+		offspring_vec = copy.deepcopy(parent_vec)
 		vector_size = np.size(parent_vec)
 		for i in range(vector_size):
 			for j in range(np.size(parent_vec[i].network_topology)):
 				for k in range(np.size(parent_vec[i].network_topology[j],axis = 0)):
 					if (rnd.random() < c_f):
-						parent_vec[i].network_topology[j][k] = mutated_vec[i].network_topology[j][k]
+						offspring_vec[i].network_topology[j][k] = mutated_vec[i].network_topology[j][k]
 			
-		return parent_vec
+		return offspring_vec
 					
 	def selection(self):
 		'''
